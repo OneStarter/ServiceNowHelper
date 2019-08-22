@@ -1,0 +1,108 @@
+v2:
+- Welkom menu in opties.
+- Alerts weg?
+- Up / Down arrows anders?
+- nav_to.do?uri=%2F als optie per instance?
+- Teveel opties? Simple en Extended mode?
+- Niet standaard de huidige suffix voor switch gebruiken, ook een eigen kunnen kiezen?
+- Het selecteren van een UserID laat de naam zien.
+- Drag and drop support toevoegen.
+- Verbergen kunnen kiezen, om zo als bookmark te kunnen dienen.
+- Icoon van kleur kunnen veranderen per instance, zodat je ziet waar je zit.
+
+- Copyright OneStarter nadat de website af is?
+- Donatie knop naast copyright. Patreon aanpassen. Eigen naam?
+- Kijken voor sponsors (Powered by). Via Google betaald krijgen?
+
+
+// Dummy data
+<a id="loadDummyData" class="button clickbutton blue">Load Dummy data</a>
+
+#loadDummyData {
+    float: left;
+    position: absolute;
+    top: 30px;
+}
+
+$("body").on("click", "#loadDummyData", function () {
+    chrome.storage.local.set({
+        "groupsObj": dummyData
+    });
+
+    chrome.storage.local.set({
+        "addNewInstanceObj": ""
+    });
+
+    location.reload();
+});
+
+var dummyData = {
+    "ibm": [{
+        "name": "DEV",
+        "url": "ibmaabdev",
+        "color": "blue",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "SAND",
+        "url": "ibmaabsand",
+        "color": "blue",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "ST",
+        "url": "ibmaabst",
+        "color": "blue",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "ET",
+        "url": "ibmaabet",
+        "color": "blue",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "PR",
+        "url": "ibmaabpr",
+        "color": "blue",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }],
+    "abn": [{
+        "name": "DEV GREEN",
+        "url": "aabsiamdev",
+        "color": "green",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "MyIT",
+        "url": "aabsiamdev",
+        "color": "green",
+        "spCheck": true,
+        "spSuffix": "myit"
+    }, {
+        "name": "SAND GREEN",
+        "url": "aabsiamsand",
+        "color": "green",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "ST GREEN",
+        "url": "aabsiamst",
+        "color": "green",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "ET GREEN",
+        "url": "aabsiamet",
+        "color": "green",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }, {
+        "name": "PR GREEN",
+        "url": "aabsiampr",
+        "color": "green",
+        "spCheck": false,
+        "spSuffix": "sp"
+    }]
+};
