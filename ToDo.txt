@@ -1,4 +1,5 @@
 v2:
+- Met options aanklikken kijken of eventueel alvast een groep gekozen kan worden.
 - Welkom menu in opties.
 - Alerts weg?
 - Up / Down arrows anders?

@@ -99,6 +99,9 @@ $(document).ready(function() {
                     $(".groupsButton").css("font-weight", "normal");
                     $(".groupsButton").css("opacity", "1");
 
+					$(".instancesButton").css("font-weight", "normal");
+					$(".instancesButton").css("opacity", "1");
+
                     $(".instancesButton").hide();
 
                     $("#options-settings").html("");
@@ -133,6 +136,9 @@ $(document).ready(function() {
             groupButtonTimer = setTimeout(function() {
                 $(".groupsButton").css("font-weight", "normal");
                 $(".groupsButton").css("opacity", "1");
+
+                $(".instancesButton").css("font-weight", "normal");
+                $(".instancesButton").css("opacity", "1");
 
                 $("#" + curGroup).css("font-weight", "bold");
                 $("#" + curGroup).css("opacity", "0.85");
@@ -202,6 +208,9 @@ $(document).ready(function() {
 
             $(".groupsButton").css("font-weight", "normal");
             $(".groupsButton").css("opacity", "1");
+
+			$(".instancesButton").css("font-weight", "normal");
+			$(".instancesButton").css("opacity", "1");
 
             $(".instancesButton").hide();
 
