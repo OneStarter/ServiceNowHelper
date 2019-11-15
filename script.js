@@ -108,20 +108,58 @@ $(document).ready(function () {
         }
     });
 
-    $("body").on("click", ".clickbutton", function () {
+    $("body").on("click", ".clickbutton", function (event) {
         var instance = this.id;
         chrome.tabs.query({ "active": true, "lastFocusedWindow": true }, function (tabs) {
             if (tabs.length) {
                 var url = tabs[0].url;
                 var link = url.split(".service-now.com/")[1];
 
-                chrome.tabs.update({
-                    url: "https://" + instance + ".service-now.com/" + link
-                });
+                if (event.ctrlKey) {
+                    chrome.tabs.create({
+                        url: "https://" + instance + ".service-now.com/" + link
+                    });
+                } else if (event.shiftKey) {
+                    chrome.windows.create({
+                        url: "https://" + instance + ".service-now.com/" + link
+                    });
+                } else {
+                    chrome.tabs.update({
+                        url: "https://" + instance + ".service-now.com/" + link
+                    });
+                }
             }
 
             window.close();
         });
+    });
+
+    $("body").on("contextmenu", ".clickbutton", function (event) {
+        var instance = this.id;
+        chrome.tabs.query({ "active": true, "lastFocusedWindow": true }, function (tabs) {
+            if (tabs.length) {
+                var url = tabs[0].url;
+                var link = url.split(".service-now.com/")[1];
+
+                if (event.shiftKey) {
+                    chrome.windows.create({
+                        url: "https://" + instance + ".service-now.com/" + link
+                    });
+                } else {
+                    chrome.tabs.create({
+                        url: "https://" + instance + ".service-now.com/" + link
+                    });
+                }
+            }
+
+            window.close();
+        });
+    });
+
+    $("html").on("contextmenu", function (event) {
+        if (!event.ctrlKey) {
+            event.preventDefault();
+        }
     });
 
     $("body").on("contextmenu", ".button", function (event) {

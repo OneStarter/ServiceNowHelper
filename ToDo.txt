@@ -1,14 +1,14 @@
 v2:
-- Met options aanklikken kijken of eventueel alvast een groep gekozen kan worden.
+- Teveel opties? Simple en Extended mode? Advanced options hide/show?
 - Welkom menu in opties.
 - Alerts weg?
 - Up / Down arrows anders?
 - nav_to.do?uri=%2F als optie per instance?
-- Teveel opties? Simple en Extended mode?
 - Niet standaard de huidige suffix voor switch gebruiken, ook een eigen kunnen kiezen?
 - Het selecteren van een UserID laat de naam zien.
 - Drag and drop support toevoegen.
-- Verbergen kunnen kiezen, om zo als bookmark te kunnen dienen.
+- Always show kunnen kiezen, om zo als bookmark te kunnen dienen.
+- Code snippets kunnen kopieren? Rechtermuis menu?
 - Icoon van kleur kunnen veranderen per instance, zodat je ziet waar je zit.
 
 - Copyright OneStarter nadat de website af is?

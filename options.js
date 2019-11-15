@@ -188,6 +188,12 @@ $(document).ready(function() {
         }
     });
 
+    $("html").on("contextmenu", function (event) {
+        if (!event.ctrlKey) {
+            event.preventDefault();
+        }
+    });
+
     $("body").on("contextmenu", ".groupsButton", function (event) {
         event.preventDefault();
         curGroup = this.id;
@@ -508,6 +514,12 @@ $(document).ready(function() {
 
         $("#" + curInstance).attr("id", curGroup + "-" + inst);
         curInstance = curGroup + "-" + inst;
+
+        $("#saveInstance").text("Instance saved");
+
+        setTimeout(function () {
+            $("#saveInstance").text("Save");
+        }, 1000);
     });
 
     $("body").on("mouseenter", "#saveInstance", function() {
