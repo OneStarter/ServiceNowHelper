@@ -155,6 +155,7 @@ $(document).ready(function() {
                 clicks = 0;
             }, 200);
         } else {
+            clicks = 0;
             clearTimeout(groupButtonTimer);
 
             var groupName = prompt("Please enter the new group name.", curGroup);

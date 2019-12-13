@@ -40,11 +40,21 @@ $(document).ready(function () {
                 });
 
                 $("#buttons").fadeIn().css("display", "inline-block");
-            } else if (startURL.indexOf("chrome-extension") === -1) {
+            } else if (startURL.indexOf("chrome-extension") !== -1) {
                 $("#buttons").append('<div id="optionsdiv"><a href id="go-to-options">Go to options</a></div>');
                 $("#buttons").fadeIn().css("display", "inline-block");
             } else {
-                window.close();
+                chrome.storage.local.get("groupsObj", function (data) {
+                    var groupsObj = data.groupsObj;
+                    for (var group in groupsObj) {
+                        $("#buttons").append('<div class="groupHeader">' + group + '</div>');
+                        createAllButtons(groupsObj[group]);
+                    }
+
+                    $("#buttons").append('<div id="optionsdiv"><a href id="go-to-options">Go to options</a></div>');
+                });
+
+                $("#buttons").fadeIn().css("display", "inline-block");
             }
         }
     });
@@ -62,6 +72,16 @@ $(document).ready(function () {
                 $("#buttons").fadeIn().css("display", "inline-block");
             } else if (element.url !== currentInstance && element.spCheck == false && spFound == false) {
                 $("#buttons").append('<a id="' + element.url + '" class="button clickbutton ' + element.color + '">' + element.name + '</a>');
+            }
+        });
+    }
+
+    function createAllButtons(data) {
+        data.forEach(function (element) {
+            if (element.spCheck == true) {
+                $("#buttons").append('<a id="' + element.url + '" suffix="' + element.spSuffix + '" class="button allbutton ' + element.color + '">' + element.name + '</a>');
+            } else {
+                $("#buttons").append('<a id="' + element.url + '" suffix="" class="button allbutton ' + element.color + '">' + element.name + '</a>');
             }
         });
     }
@@ -126,6 +146,30 @@ $(document).ready(function () {
                 } else {
                     chrome.tabs.update({
                         url: "https://" + instance + ".service-now.com/" + link
+                    });
+                }
+            }
+
+            window.close();
+        });
+    });
+
+    $("body").on("click", ".allbutton", function (event) {
+        var instance = this.id;
+        var suffix = $("#" + instance).attr("suffix");
+        chrome.tabs.query({ "active": true, "lastFocusedWindow": true }, function (tabs) {
+            if (tabs.length) {
+                if (event.ctrlKey) {
+                    chrome.tabs.create({
+                        url: "https://" + instance + ".service-now.com/" + suffix
+                    });
+                } else if (event.shiftKey) {
+                    chrome.windows.create({
+                        url: "https://" + instance + ".service-now.com/" + suffix
+                    });
+                } else {
+                    chrome.tabs.update({
+                        url: "https://" + instance + ".service-now.com/" + suffix
                     });
                 }
             }

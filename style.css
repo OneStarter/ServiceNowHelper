@@ -40,6 +40,14 @@ a.button:active {
     margin-bottom: 14px;
 }
 
+.groupHeader:not(:first-child) {
+    margin-top: 8px;
+}
+
+.groupHeader {
+    margin-bottom: 4px;
+}
+
 #WidgetCode {
     margin-top: 4px;
     margin-bottom: 10px;
