@@ -1,6 +1,7 @@
 $(document).ready(function () {
     "use strict";
     var spFound = false;
+    var notes = "";
 
     chrome.tabs.query({
         "active": true,
@@ -21,6 +22,7 @@ $(document).ready(function () {
                         groupsObj[group].forEach(function (instance) {
                             if (instance.url === currentInstance && buttonCount == 0) {
                                 createButtons(groupsObj[group], currentInstance, currentSP);
+                                notes = instance.notes;
                                 buttonCount = buttonCount + 1;
                             }
                         });
@@ -33,6 +35,12 @@ $(document).ready(function () {
                     if (buttonCount === 0) {
                         $("#buttons").append('<a id="addNewInstance" class="' + currentInstance + ' button green">Add ' + currentInstance + '</a>');
                     } else if (!document.getElementById(currentInstance) && spFound == false) {
+                        if (notes == "undefined" || typeof notes === "object") {
+                            notes = "";
+                        }
+                        else if (notes) {
+                            $("#buttons").prepend('<div id="notesDiv">Notes: <textarea id="notes" readonly="readonly">' + notes + '</textarea><br><br></div>');
+                        }
                         $("#buttons").prepend('<div id="currentInstanceDiv">Current instance: ' + currentInstance + '</div>');
                     }
 

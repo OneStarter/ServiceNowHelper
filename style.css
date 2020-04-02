@@ -36,6 +36,20 @@ a.button:active {
     text-align: center;
 }
 
+#notesDiv {
+    cursor: default;
+    user-select: none;
+}
+
+#notes {
+    width: 180px;
+    max-height: 300px;
+    border: none;
+    overflow: auto;
+    outline: none;
+    resize: vertical;
+}
+
 #addMenu {
     margin-bottom: 14px;
 }
@@ -68,6 +82,7 @@ a.button:active {
 
 #go-to-options {
     color: black;
+    user-select: none;
 }
 
 .blue {
@@ -174,9 +189,15 @@ a.button:active {
     margin-bottom: 6px;
 }
 
-#nameTxt, #urlTxt, #colorTxt, #spTxt, #spsTxt {
+#nameTxt, #urlTxt, #colorTxt, #notesTxt, #spTxt, #spsTxt {
     cursor: default;
     user-select: none;
+}
+
+#notesVal{
+    width: 180px;
+    max-height: 300px;
+    resize: vertical;
 }
 
 #copyright {

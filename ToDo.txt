@@ -1,4 +1,6 @@
 v2:
+- Meeste settings onder instance zetten, wel pas laten zien als je er op drukt. Bij huidige settings plek url settings zetten.
+- Import en export maken.
 - Teveel opties? Simple en Extended mode? Advanced options hide/show?
 - Welkom menu in opties.
 - Alerts weg?

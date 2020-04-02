@@ -255,7 +255,7 @@ $(document).ready(function() {
                             newInstance = instanceName.replace(/\s/g, "").toLowerCase();
                         }
 
-                        var newInst = {"name": instanceName, "url": newInstance, "color": "blue", "spCheck": 0, "spSuffix": "sp"};
+                        var newInst = {"name": instanceName, "url": newInstance, "color": "blue", "notes": "", "spCheck": 0, "spSuffix": "sp"};
                         groupsObj[curGroupName].push(newInst);
 
                         chrome.storage.local.set({
@@ -321,10 +321,26 @@ $(document).ready(function() {
             return instancesObj.name == instanceName;
         });
 
+        if (instancesObj[0].name == "undefined") {
+            instancesObj[0].name = "";
+        }
+
+        if (instancesObj[0].url == "undefined") {
+            instancesObj[0].url = "";
+        }
+
+        if (instancesObj[0].notes == "undefined") {
+            instancesObj[0].notes = "";
+        }
+
+        if (instancesObj[0].spSuffix == "undefined") {
+            instancesObj[0].spSuffix = "";
+        }
+
         $("#options-settings").html('<div id="upDownDiv"><a id="instanceUp" class="button clickbutton blue">Up</a>' +
                                     '<a id="instanceDown" class="button clickbutton blue">Down</a><br><br></div>' +
-                                    '<div id="nameTxt">Name:</div><input id="instanceVal" type="text" value="' + instancesObj[0].name + '"><br><br>' +
-                                    '<div id="urlTxt">Url (only the instance part):</div><input id="settingsUrl" type="text" value="' + instancesObj[0].url + '"><br><br>' +
+                                    '<div id="nameTxt">Name:</div><input id="instanceVal" type="text" value="' + instancesObj[0].name + '"/><br><br>' +
+                                    '<div id="urlTxt">Url (only the instance part):</div><input id="settingsUrl" type="text" value="' + instancesObj[0].url + '"/><br><br>' +
                                     '<div id="colorTxt">Color:</div><select id="colorPicker"><option value="blue">Blue</option>' +
                                                     '<option value="green">Green</option>' +
                                                     '<option value="orange">Orange</option>' +
@@ -332,9 +348,10 @@ $(document).ready(function() {
                                                     '<option value="red">Red</option>' +
                                                     '<option value="yellow">Yellow</option>' +
                                             '</select><br><br>' +
-                                    '<div id="spTxt">This is a Service Portal:</div><input id="spCheck" type="checkbox"><br><br>' +
+                                    '<div id="notesTxt">Notes:</div><textarea id="notesVal">' + instancesObj[0].notes + '</textarea><br><br>' +
+                                    '<div id="spTxt">This is a Service Portal:</div><input id="spCheck" type="checkbox"/><br><br>' +
                                     '<div id="spDiv">' +
-                                    '<div id="spsTxt">Service Portal suffix:</div><input id="spSuffix" type="text" value="' + instancesObj[0].spSuffix + '"></div>');
+                                    '<div id="spsTxt">Service Portal suffix:</div><input id="spSuffix" type="text" value="' + instancesObj[0].spSuffix + '"/></div>');
 
         if (upDownLength == 1) {
             $("#upDownDiv").css("display", "none");
@@ -410,6 +427,23 @@ $(document).ready(function() {
     });
 
 
+    $("body").on("mouseenter", "#notes", function() {
+        $("#helpText").html("Set notes for your instance.");
+    });
+
+    $("body").on("mouseleave", "#notes", function() {
+        $("#helpText").html("Hover over an element to see its description.");
+    });
+
+    $("body").on("mouseenter", "#notesTxt", function() {
+        $("#helpText").html("Set notes for your instance.");
+    });
+
+    $("body").on("mouseleave", "#notesTxt", function() {
+        $("#helpText").html("Hover over an element to see its description.");
+    });
+
+
     $("body").on("click", "#saveInstance", function () {
         var format = /[!@#$%\^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
@@ -448,6 +482,9 @@ $(document).ready(function() {
             return;
         }
 
+
+        var notesVal = $("#notesVal").val().trim();
+
         var spCheckVal = $("#spCheck").prop("checked");
         var spSuffixVal = $("#spSuffix").val().trim();
 
@@ -472,6 +509,7 @@ $(document).ready(function() {
             "name": nameVal,
             "url": urlVal,
             "color": colorVal,
+            "notes": notesVal,
             "spCheck": spCheckVal,
             "spSuffix": spSuffixVal
         };
@@ -675,6 +713,16 @@ $(document).ready(function() {
     $("body").on("mouseleave", "#instanceDown", function() {
         $("#helpText").html("Hover over an element to see its description.");
     });
+
+
+    $("body").on("mouseenter", "#notesVal", function() {
+        $("#helpText").html("Set notes for your instance.");
+    });
+
+    $("body").on("mouseleave", "#notesVal", function() {
+        $("#helpText").html("Hover over an element to see its description.");
+    });
+
 
     $("body").on("click", "#spCheck", function () {
         if (this.checked) {
