@@ -321,26 +321,41 @@ $(document).ready(function() {
             return instancesObj.name == instanceName;
         });
 
-        if (instancesObj[0].name == "undefined") {
-            instancesObj[0].name = "";
+        var name = instancesObj[0].name;
+        var url = instancesObj[0].url;
+        var color = instancesObj[0].color;
+        var notes = instancesObj[0].notes;
+        var spCheck = instancesObj[0].spCheck;
+        var spSuffix = instancesObj[0].spSuffix;
+
+        if (name == "undefined" || typeof name === "object") {
+            name = "";
         }
 
-        if (instancesObj[0].url == "undefined") {
-            instancesObj[0].url = "";
+        if (url == "undefined" || typeof url === "object") {
+            url = "";
         }
 
-        if (instancesObj[0].notes == "undefined") {
-            instancesObj[0].notes = "";
+        if (color == "undefined" || typeof color === "object") {
+            color = "";
         }
 
-        if (instancesObj[0].spSuffix == "undefined") {
-            instancesObj[0].spSuffix = "";
+        if (notes == "undefined" || typeof notes === "object") {
+            notes = "";
+        }
+
+        if (spCheck == "undefined" || typeof spCheck === "object") {
+            spCheck = "";
+        }
+
+        if (spSuffix == "undefined" || typeof spSuffix === "object") {
+            spSuffix = "";
         }
 
         $("#options-settings").html('<div id="upDownDiv"><a id="instanceUp" class="button clickbutton blue">Up</a>' +
                                     '<a id="instanceDown" class="button clickbutton blue">Down</a><br><br></div>' +
-                                    '<div id="nameTxt">Name:</div><input id="instanceVal" type="text" value="' + instancesObj[0].name + '"/><br><br>' +
-                                    '<div id="urlTxt">Url (only the instance part):</div><input id="settingsUrl" type="text" value="' + instancesObj[0].url + '"/><br><br>' +
+                                    '<div id="nameTxt">Name:</div><input id="instanceVal" type="text" value="' + name + '"/><br><br>' +
+                                    '<div id="urlTxt">Url (only the instance part):</div><input id="settingsUrl" type="text" value="' + url + '"/><br><br>' +
                                     '<div id="colorTxt">Color:</div><select id="colorPicker"><option value="blue">Blue</option>' +
                                                     '<option value="green">Green</option>' +
                                                     '<option value="orange">Orange</option>' +
@@ -348,10 +363,10 @@ $(document).ready(function() {
                                                     '<option value="red">Red</option>' +
                                                     '<option value="yellow">Yellow</option>' +
                                             '</select><br><br>' +
-                                    '<div id="notesTxt">Notes:</div><textarea id="notesVal">' + instancesObj[0].notes + '</textarea><br><br>' +
+                                    '<div id="notesTxt">Notes:</div><textarea id="notesVal">' + notes + '</textarea><br><br>' +
                                     '<div id="spTxt">This is a Service Portal:</div><input id="spCheck" type="checkbox"/><br><br>' +
                                     '<div id="spDiv">' +
-                                    '<div id="spsTxt">Service Portal suffix:</div><input id="spSuffix" type="text" value="' + instancesObj[0].spSuffix + '"/></div>');
+                                    '<div id="spsTxt">Service Portal suffix:</div><input id="spSuffix" type="text" value="' + spSuffix + '"/></div>');
 
         if (upDownLength == 1) {
             $("#upDownDiv").css("display", "none");
@@ -359,17 +374,17 @@ $(document).ready(function() {
             $("#upDownDiv").css("display", "inline-block");
         }
 
-        if (!instancesObj[0].url) {
+        if (!url) {
             $("#settingsUrl").focus();
         }
 
-        if (instancesObj[0].color) {
-            $("#colorPicker").val(instancesObj[0].color);
+        if (color) {
+            $("#colorPicker").val(color);
         } else {
             $("#colorPicker").val("blue");
         }
 
-        if (instancesObj[0].spCheck == 1) {
+        if (spCheck == 1) {
             $("#spCheck").prop("checked", true);
         } else {
             $("#spDiv").css("display", "none");
