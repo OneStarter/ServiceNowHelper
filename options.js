@@ -321,34 +321,30 @@ $(document).ready(function() {
             return instancesObj.name == instanceName;
         });
 
-        var name = instancesObj[0].name;
-        var url = instancesObj[0].url;
-        var color = instancesObj[0].color;
-        var notes = instancesObj[0].notes;
+        var name = "" + instancesObj[0].name;
+        var url = "" + instancesObj[0].url;
+        var color = "" + instancesObj[0].color;
+        var notes = "" + instancesObj[0].notes;
         var spCheck = instancesObj[0].spCheck;
-        var spSuffix = instancesObj[0].spSuffix;
+        var spSuffix = "" + instancesObj[0].spSuffix;
 
-        if (name == "undefined" || typeof name === "object") {
+        if (name == "undefined") {
             name = "";
         }
 
-        if (url == "undefined" || typeof url === "object") {
+        if (url == "undefined") {
             url = "";
         }
 
-        if (color == "undefined" || typeof color === "object") {
+        if (color == "undefined") {
             color = "";
         }
 
-        if (notes == "undefined" || typeof notes === "object") {
+        if (notes == "undefined") {
             notes = "";
         }
 
-        if (spCheck == "undefined" || typeof spCheck === "object") {
-            spCheck = "";
-        }
-
-        if (spSuffix == "undefined" || typeof spSuffix === "object") {
+        if (spSuffix == "undefined") {
             spSuffix = "";
         }
 
